@@ -68,7 +68,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
         list: updateData,
       });
-      toast.success("Chapters reordered");
+      toast.success("Chapters reordered successfully");
       router.refresh();
     } catch {
       toast.error("Something went wrong");
