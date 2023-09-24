@@ -32,7 +32,7 @@ const formSchema = z.object({
   categoryId: z.string().min(1),
 });
 
-const CategoryForm = ({
+export const CategoryForm = ({
   initialData,
   courseId,
   options,
@@ -55,7 +55,7 @@ const CategoryForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success("Course updated");
+      toast.success("Course updated successfully");
       toggleEdit();
       router.refresh();
     } catch {
@@ -104,7 +104,11 @@ const CategoryForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Combobox options={...options} {...field} />
+                    <Combobox
+                      onChange={() => {}}
+                      options={...options}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -121,5 +125,3 @@ const CategoryForm = ({
     </div>
   );
 };
-
-export default CategoryForm;

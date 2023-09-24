@@ -20,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-// import { formatPrice } from "@/lib/format";
+import { formatPrice } from "@/lib/format";
 
 interface PriceFormProps {
   initialData: Course;
@@ -50,7 +50,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success("Course updated");
+      toast.success("Course updated successfully");
       toggleEdit();
       router.refresh();
     } catch {
@@ -73,7 +73,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
           )}
         </Button>
       </div>
-      {/* {!isEditing && (
+      {!isEditing && (
         <p
           className={cn(
             "text-sm mt-2",
@@ -82,7 +82,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
         >
           {initialData.price ? formatPrice(initialData.price) : "No price"}
         </p>
-      )} */}
+      )}
       {isEditing && (
         <Form {...form}>
           <form

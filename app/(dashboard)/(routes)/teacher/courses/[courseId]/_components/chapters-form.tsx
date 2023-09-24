@@ -20,8 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-
-// import { ChaptersList } from "./chapters-list";
+import ChaptersList from "./chapters-list";
 
 interface ChaptersFormProps {
   initialData: Course & { chapters: Chapter[] };
@@ -54,7 +53,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.post(`/api/courses/${courseId}/chapters`, values);
-      toast.success("Chapter created");
+      toast.success("Chapter created successfully");
       toggleCreating();
       router.refresh();
     } catch {
@@ -130,7 +129,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
           </form>
         </Form>
       )}
-      {/* {!isCreating && (
+      {!isCreating && (
         <div
           className={cn(
             "text-sm mt-2",
@@ -144,7 +143,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
             items={initialData.chapters || []}
           />
         </div>
-      )} */}
+      )}
       {!isCreating && (
         <p className="text-xs text-muted-foreground mt-4">
           Drag and drop to reorder the chapters
